@@ -22,7 +22,9 @@
             {
                 using (var fileStream = File.Create(TemporaryFile))
                 {
+#pragma warning disable SYSLIB0011 // 类型或成员已过时
                     binaryFormatter.Serialize(ms, argumentException);
+#pragma warning restore SYSLIB0011 // 类型或成员已过时
                     var compressor = new SevenZipCompressor();
                     compressor.CompressStream(ms, fileStream);
                 }

@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>SevenZipSharp</AssemblyName>
-    <TargetFrameworks>netstandard2.0;net45;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net7</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>SevenZip.snk</AssemblyOriginatorKeyFile>
     <AssemblyTitle>SevenZipSharp</AssemblyTitle>
@@ -19,6 +19,7 @@
     <RegisterForComInterop>false</RegisterForComInterop>
     <DefaultItemExcludes>$(DefaultItemExcludes);sfx\*</DefaultItemExcludes>
     <Configurations>Debug;Release;LiteDebug;LiteRelease</Configurations>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;UNMANAGED;SFX</DefineConstants>
@@ -33,6 +34,18 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LiteRelease|AnyCPU' ">
     <DefineConstants>TRACE;UNMANAGED</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7|AnyCPU'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7|AnyCPU'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LiteDebug|net7|AnyCPU'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LiteRelease|net7|AnyCPU'">
+    <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="7z.dll">
@@ -77,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Condition="'$(TargetFramework)' != 'net45'" Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'" Include="System.Security.Permissions" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" Condition="'$(TargetFramework)' == 'net45'">
